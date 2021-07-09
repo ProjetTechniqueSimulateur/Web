@@ -14,8 +14,13 @@ router.get('/signUp', function(req, res, next) {
 router.post('/createAccount', function(req, res, next) {
   const {nom, prenom, email, username, password, newmdp}=req.body;
   db.createAccount(nom, prenom, email, username, password, newmdp, () => {
-    res.redirect("/");
+    res.redirect('/');
   });
+});
+
+router.get('/logout',function(req,res,next){
+  req.session.destroy();
+  res.redirect("/");
 });
 
 module.exports = router;
